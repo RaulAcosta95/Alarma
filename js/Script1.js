@@ -5,6 +5,8 @@ var alarmas=[];
 //OJO esta variable validación es para cuando se envían los datos
 //Se modifica en la función validar
 var validación=true;
+//Esta variable es para imprimir las alarmas
+var alarmas_html="";
 
 //OBTEN LA HORA Y MUESTRALA
 function mostrarHora(){
@@ -45,7 +47,7 @@ window.onload=function(){
 function validar(titulo,mensaje,numerohora,numerominuto){
     //Valida campos nulos
     if (titulo==""||mensaje==""||numerohora==""||numerominuto=="") {
-        console.log(`Nungun campo puede ser nulo`);
+        console.log(`Ningun campo puede ser nulo`);
         validación=false;
     }else{ //Valida la Hora
         if (numerohora<0 || numerohora>23 || numerohora == '-0') {
@@ -79,6 +81,7 @@ function agregaAlarma(){
             MinutoAlarma:`${reciboMinutoAlarma}`
             }
         );
+        ponerAlarmas();
         console.log(`Se agregó la alarma ${alarmas.length}`);
         swal('Bien Hecho!', `Se agrego la alarma: \n${recibioTituloAlarma}`,'success');
 
@@ -92,3 +95,33 @@ function agregaAlarma(){
 //Como las variables hora, minuto, segundo son globales, se actualizan cada segundo
 //Fuck yeah
 
+//MANIPULAR ALARMAS
+//función para poner la alarma en el html
+function ponerAlarmas() {
+    //Recorre las alarmas
+    for (let i = 0; i < alarmas.length; i++) {
+        //Captura la alarma de la posición actual
+        var titulo=alarmas[i].TituloAlarma;
+        var texto=alarmas[i].TextoAlarma;
+        var hora=alarmas[i].HoraAlarma;
+        var minuto=alarmas[i].MinutoAlarma;
+        //Agrega el codigo html a la variable alarmas_html para usarlo después
+        alarmas_html=`<div class="col" id="Alarmas_Impresas">
+        <div class="card">
+            <div class="card-body">
+            <h5 class="card-title">${titulo}</h5>
+            <p class="card-text">${texto}</p>
+            <button type="button" class="btn btn-danger">Eliminar Alarma</button>
+            </div>
+        </div>
+    </div>`+alarmas_html;
+        //Agrega el string de alarmas_html para que imprima todas las alarmas y no solo la última
+        const div_html = document.querySelector("#Alarmas_Html");
+        div_html.innerHTML = `
+        ${alarmas_html}
+        `;
+        console.log(`Se imprimió la alarma`);
+    }
+    //Limpia la variable, pues en cada for se llena con el arreglo completo
+    alarmas_html="";
+}
