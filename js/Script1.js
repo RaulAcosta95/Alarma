@@ -1,3 +1,8 @@
+//Variables Globales
+var hora,minuto,segundo;
+var recibioTituloAlarma, reciboMensajeAlarma, reciboHoraAlarma, reciboMinutoAlarma;
+var alarmas=[];
+
 //OBTEN LA HORA Y MUESTRALA
 function mostrarHora(){
     //Crea la constante que ocupa el Date para obtener las horas
@@ -33,3 +38,24 @@ window.onload=function(){
 }
 
 //RECIBE HORA PARA ALARMAS
+//Se ejecuta al apretar boton de "Enviar Alarma"
+function agregaAlarma(){
+    //Obten los valores de los campos
+    recibioTituloAlarma=document.getElementById('Titulo_Alarma').value;
+    reciboMensajeAlarma=document.getElementById('Texto_Alarma').value;
+    reciboHoraAlarma=document.getElementById('Hora_Alarma').value;
+    reciboMinutoAlarma=document.getElementById('Minuto_Alarma').value;
+    //Guarda los valores en posiciones del arreglo de alarmas
+    alarmas.push(
+        {
+        TituloAlarma:`${recibioTituloAlarma}`,
+        TextoAlarma:`${reciboMensajeAlarma}`,
+        HoraAlarma:`${reciboHoraAlarma}`,
+        MinutoAlarma:`${reciboMinutoAlarma}`
+        }
+    );
+    return false;
+}
+
+//Como las variables hora, minuto, segundo son globales, se actualizan cada segundo
+//Fuck yeah
