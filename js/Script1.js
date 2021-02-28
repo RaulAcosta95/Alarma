@@ -106,12 +106,13 @@ function ponerAlarmas() {
         var hora=alarmas[i].HoraAlarma;
         var minuto=alarmas[i].MinutoAlarma;
         //Agrega el codigo html a la variable alarmas_html para usarlo después
-        alarmas_html=`<div class="col" id="Alarmas_Impresas">
+        //el id i es para identificar y saber cual borrar
+        alarmas_html=`<div class="col" id="Alarma${i}">
         <div class="card">
             <div class="card-body">
             <h5 class="card-title">${titulo}</h5>
             <p class="card-text">${texto}</p>
-            <button type="button" class="btn btn-danger">Eliminar Alarma</button>
+            <button type="button" class="btn btn-danger" onclick="return borrarAlarma(${i})">Eliminar Alarma</button>
             </div>
         </div>
     </div>`+alarmas_html;
@@ -124,4 +125,22 @@ function ponerAlarmas() {
     }
     //Limpia la variable, pues en cada for se llena con el arreglo completo
     alarmas_html="";
+}
+
+//Función borrar alarma o cancelarla
+function borrarAlarma(id) {
+    //Borrala del html
+
+    //ERROR
+    // Cannot set property 'innerHTML' of null
+
+    // const div_html = document.getElementById(`#Alarmas${id}`)
+    // div_html.remove;
+
+    // const div_html = document.querySelector("#Alarmas_Html"+id);
+    // div_html.innerHTML = `
+    
+    // `;
+    console.log(`Se borro la alarma`);
+    return null;
 }
