@@ -33,6 +33,7 @@ header{
     font-size: 30px;
     color: wheat;
     -webkit-border-radius: 7px;
+    -webkit-box-shadow: 5px 5px 5px rgb(139, 127, 127);
 }
 #BotonRegresar button{
     position:relative;
@@ -44,6 +45,7 @@ header{
     font-size: 30px;
     color: wheat;
     -webkit-border-radius: 7px;
+    -webkit-box-shadow: 5px 5px 5px rgb(139, 127, 127);
 }
 #Boton_EnviarAlarma{
     margin-top: 10px;
@@ -51,6 +53,7 @@ header{
     -webkit-border-radius: 10px;
     font-size: 20px;
     color: rgb(255, 255, 255);
+    -webkit-box-shadow: 5px 5px 5px rgb(139, 127, 127);
 }
 /* /Boton Nueva Alarma */
 /* Sección Agregar alarma (card) */
