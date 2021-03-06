@@ -82,13 +82,68 @@
                 <div class="row">
                     <div class="col text-center">
                         <div id="BotonNuevaAlarma">
-                            <a href="./nuevaAlarma.html">Nueva Alarma</a>
+                            <button>Nueva Alarma</button>
                         </div>
                     </div>
                 </div>
             </div>
         </article>
         <!-- /Boton Ir a Agregar Alarma -->
+    <!-- Agregar nueva Alarma -->
+    <div id="NuevaAlarma">
+
+    <!-- Boton Regresar -->
+    <article>
+        <hr>
+        <div class="container">
+            <div class="row">
+                <div class="col text-center">
+                    <div id="BotonRegresar">
+                        <button>Regresar</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </article>
+    <!-- Boton Regresar -->
+    <!-- Agregar Alarma -->
+    <article>
+        <hr>
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="card"  id="Card_AgregarAlarma">
+                        <div class="card-body">
+                          <h5 class="card-title">Nueva Alarma</h5>
+                          <form>
+                            <div class="mb-3">
+                              <label for="Titulo_Alarma" class="form-label">Título de la Alarma</label>
+                              <input type="text" class="form-control" id="Titulo_Alarma" aria-describedby="Titulo de la alarma">
+                            </div>
+                            <div class="mb-3">
+                              <label for="Texto_Alarma" class="form-label">Mensaje de la Alarma</label>
+                              <input type="text" class="form-control" id="Texto_Alarma">
+                            </div>
+                            <div class="mb-3">
+                              <label class="" for="Hora_Alarma">Hora y minuto:</label>
+                              <input type="number" class="form-control floatleft" id="Hora_Alarma" placeholder="00-23">
+                              <input type="number" class="form-control" id="Minuto_Alarma" placeholder="00-59">
+    
+                            </div>
+                            <button type="submit" class="btn btn-primary" onclick="return agregaAlarma()">Enviar Alarma</button>
+                          </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12">
+                </div>
+            </div>
+        </div>
+    </article>
+    <!-- /Agregar Alarma -->
+    </div>
+    <!-- /Agregar nueva Alarma -->
+
 
 
     </section>

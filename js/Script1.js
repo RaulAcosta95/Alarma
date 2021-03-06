@@ -2,17 +2,6 @@
 var hora,minuto,segundo;
 var recibioTituloAlarma, reciboMensajeAlarma, reciboHoraAlarma, reciboMinutoAlarma;
 var alarmas=[];
-//exporta el arreglo alarmas[] para usarlo en el Script2
-if (alarmas===null) {
-    console.log('No hay alarmas aún');
-}else{
-    module.exports=alarmas
-}
-if (require('./Script2')===null) {
-    console.log('No hay alarmas aún');
-}else{
-    alarmas=require('./Script2')
-}
 
 //OJO esta variable validación es para cuando se envían los datos
 //Se modifica en la función validar
@@ -73,9 +62,36 @@ function validar(titulo,mensaje,numerohora,numerominuto){
          } 
 }
 
-//LA FUNCIÓN AGREGAR ALARMA SE PASÓ AL SCRIPT2
-//LA FUNCIÓN AGREGAR ALARMA SE EJECUTA EN EL ARCHIVO NUEVA ALARMA.HTML
-//SCRIPT 1 Y 2 HACEN EXPORT Y REQUIRE DEL ARREGLO ALARMAS[]
+function agregaAlarma(){
+    console.log(`Obten los valores de los campos`);
+    //Obten los valores de los campos
+    recibioTituloAlarma=document.getElementById('Titulo_Alarma').value;
+    reciboMensajeAlarma=document.getElementById('Texto_Alarma').value;
+    reciboHoraAlarma=document.getElementById('Hora_Alarma').value;
+    reciboMinutoAlarma=document.getElementById('Minuto_Alarma').value;
+    //Valida los campos
+    validar(recibioTituloAlarma,reciboMensajeAlarma,reciboHoraAlarma,reciboMinutoAlarma);
+    //Guarda los valores en posiciones del arreglo de alarmas
+    //Si la validación fue bien, la variable validación será true
+    if (validación) {
+        alarmas.push(
+            {
+            TituloAlarma:`${recibioTituloAlarma}`,
+            TextoAlarma:`${reciboMensajeAlarma}`,
+            HoraAlarma:`${reciboHoraAlarma}`,
+            MinutoAlarma:`${reciboMinutoAlarma}`
+            }
+        );
+        // ponerAlarmas();
+        console.log(`Se agregó la alarma ${alarmas.length}`);
+        swal('Bien Hecho!', `Se agrego la alarma: \n${recibioTituloAlarma}`,'success');
+
+    }else{
+          swal('Un problema con tus campos...','No dejes campos vacíos, usa el formato de 24 horas, y cada hora tiene 60 minutos','error');
+    }
+
+    return false;
+}
 
 
 //Como las variables hora, minuto, segundo son globales, se actualizan cada segundo
@@ -98,6 +114,7 @@ function ponerAlarmas() {
             <div class="card-body">
             <h5 class="card-title">${titulo}</h5>
             <p class="card-text">${texto}</p>
+            <p class="card-text">${hora} : ${minuto}</p>
             <button type="button" class="btn btn-danger" onclick="return borrarAlarma(${i})">Eliminar Alarma</button>
             </div>
         </div>

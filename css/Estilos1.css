@@ -1,6 +1,6 @@
 /* Estilos Fijos */
 #Body{
-    background: rgb(197, 197, 216);
+    background: rgb(206, 206, 241);
 }
 header{
     background: rgb(48, 48, 49);
@@ -11,7 +11,7 @@ header{
 #reloj{
     background: rgb(51, 51, 51);
     font-family: "Century Gothic"; 
-    min-height: 20vh;
+    min-height: 15vh;
     font-size:80px;
     color: rgb(181, 212, 241) ; 
     text-align: center;
@@ -23,10 +23,7 @@ header{
 }
 /* /Mujer Alarma */
 /* Boton Nueva Alarma */
-#BotonNuevaAlarma{
-    
-}
-#BotonNuevaAlarma a{
+#BotonNuevaAlarma button{
     position:relative;
     height: 10vh;
     width: 50vh;
@@ -35,12 +32,23 @@ header{
     font-family: 'Oswald';
     font-size: 30px;
     color: wheat;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    padding-left: 50px;
-    padding-right: 50px;
+}
+#BotonRegresar button{
+    position:relative;
+    height: 10vh;
+    width: 50vh;
+    background-color: rgb(221, 16, 16);
+    text-decoration: none;
+    font-family: 'Oswald';
+    font-size: 30px;
+    color: wheat;
 }
 /* /Boton Nueva Alarma */
+/* Sección Agregar alarma (card) */
+#Card_AgregarAlarma{
+    background-color: rgb(172, 173, 243);
+}
+/* /Sección Agregar alarma (card) */
 
 /* Previsualización alarmas */
 .card{
