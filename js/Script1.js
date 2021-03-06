@@ -2,12 +2,24 @@
 var hora,minuto,segundo;
 var recibioTituloAlarma, reciboMensajeAlarma, reciboHoraAlarma, reciboMinutoAlarma;
 var alarmas=[];
-
 //OJO esta variable validación es para cuando se envían los datos
 //Se modifica en la función validar
 var validación=true;
 //Esta variable es para imprimir las alarmas
 var alarmas_html="";
+//Oculta la sección de agregar alarma
+//SECCIÓN JQUERY
+$(document).ready(function () {
+    $('#NuevaAlarma').hide();
+    $('#BotonNuevaAlarma').click(function () { 
+        $('#Pantalla_Principal').hide();
+        $('#NuevaAlarma').show();
+    });
+    $('#BotonRegresar').click(function () { 
+        $('#Pantalla_Principal').show();
+        $('#NuevaAlarma').hide();
+    });
+});
 
 //OBTEN LA HORA Y MUESTRALA
 function mostrarHora(){

@@ -50,12 +50,15 @@ header{
 }
 /* /Sección Agregar alarma (card) */
 
-/* Previsualización alarmas */
-.card{
-    /* width: 60vh; */
+/* Interactividad*/
+.hide{
+    display: none;
+    /* display: inline-block; */
 }
-
-
+.appear{
+    display: inline-block;
+}
+/* / Interactividad*/
 
 /* Estilos propios fijos Raúl Acosta */
 /* https://twitter.com/raul_acosta95 */
