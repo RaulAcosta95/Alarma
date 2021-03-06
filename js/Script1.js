@@ -81,7 +81,7 @@ function agregaAlarma(){
             MinutoAlarma:`${reciboMinutoAlarma}`
             }
         );
-        ponerAlarmas();
+        // ponerAlarmas();
         console.log(`Se agregó la alarma ${alarmas.length}`);
         swal('Bien Hecho!', `Se agrego la alarma: \n${recibioTituloAlarma}`,'success');
 
@@ -112,6 +112,7 @@ function ponerAlarmas() {
             <div class="card-body">
             <h5 class="card-title">${titulo}</h5>
             <p class="card-text">${texto}</p>
+            <p class="card-text">${hora} : ${minuto}</p>
             <button type="button" class="btn btn-danger" onclick="return borrarAlarma(${i})">Eliminar Alarma</button>
             </div>
         </div>
