@@ -17,6 +17,11 @@ header{
     text-align: center;
 }
 /* /Reloj */
+/* Mujer Alarma */
+#Mujer_Alarma_Animación{
+    height: 35vh;
+}
+/* /Mujer Alarma */
 /* Previsualización alarmas */
 .card{
     /* width: 60vh; */
