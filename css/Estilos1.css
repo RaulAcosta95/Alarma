@@ -22,6 +22,26 @@ header{
     height: 35vh;
 }
 /* /Mujer Alarma */
+/* Boton Nueva Alarma */
+#BotonNuevaAlarma{
+    
+}
+#BotonNuevaAlarma a{
+    position:relative;
+    height: 10vh;
+    width: 50vh;
+    background-color: rgb(221, 16, 16);
+    text-decoration: none;
+    font-family: 'Oswald';
+    font-size: 30px;
+    color: wheat;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 50px;
+    padding-right: 50px;
+}
+/* /Boton Nueva Alarma */
+
 /* Previsualización alarmas */
 .card{
     /* width: 60vh; */
