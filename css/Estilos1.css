@@ -32,6 +32,7 @@ header{
     font-family: 'Oswald';
     font-size: 30px;
     color: wheat;
+    -webkit-border-radius: 7px;
 }
 #BotonRegresar button{
     position:relative;
@@ -42,6 +43,14 @@ header{
     font-family: 'Oswald';
     font-size: 30px;
     color: wheat;
+    -webkit-border-radius: 7px;
+}
+#Boton_EnviarAlarma{
+    margin-top: 10px;
+    background-color: rgb(224, 42, 42);
+    -webkit-border-radius: 10px;
+    font-size: 20px;
+    color: rgb(255, 255, 255);
 }
 /* /Boton Nueva Alarma */
 /* Sección Agregar alarma (card) */
@@ -51,7 +60,8 @@ header{
 /* /Sección Agregar alarma (card) */
 /* Selector de hora y minuto en agregar alarma */
 .horayminuto{
-    width: 23vh;
+    width: 20vh;
+    margin-right: 3vh;
 }
 /* /Selector de hora y minuto en agregar alarma */
 

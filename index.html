@@ -121,11 +121,11 @@
                           <form>
                             <div class="">
                               <label for="Titulo_Alarma" class="form-label">Título de la Alarma</label>
-                              <input type="text" class="form-control" id="Titulo_Alarma" aria-describedby="Titulo de la alarma">
+                              <input type="text" class="form-control" id="Titulo_Alarma" placeholder="Título..." aria-describedby="Titulo de la alarma">
                             </div>
                             <div class="">
                               <label for="Texto_Alarma" class="form-label">Mensaje de la Alarma</label>
-                              <input type="text" class="form-control" id="Texto_Alarma">
+                              <input type="text" class="form-control" placeholder="Mensaje..." id="Texto_Alarma">
                             </div>
                             <div class="">
                               <label class="" for="Hora_Alarma">Hora y minuto:</label> <br>
@@ -133,7 +133,9 @@
                               <input class="horayminuto" type="number" class="form-control" id="Minuto_Alarma" placeholder="00-59">
     
                             </div>
-                            <button type="submit" class="btn btn-primary" onclick="return agregaAlarma()">Enviar Alarma</button>
+                            <div class="text-center">
+                                <button type="submit" class="btn btn-primary" onclick="return agregaAlarma()" id="Boton_EnviarAlarma"><b>Enviar Alarma</b></button>
+                            </div>
                           </form>
                         </div>
                     </div>
