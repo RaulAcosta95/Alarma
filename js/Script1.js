@@ -41,7 +41,7 @@ function mostrarHora(){
 
 //Arregla los números que sean menores a 10, de otra manera saldría sin 0
 function agregarCero(i){
-    if (i<10) {
+    if (i<10 && i.length<2) {
         i='0' + i;
     }
     return i;
@@ -81,6 +81,9 @@ function agregaAlarma(){
     reciboMensajeAlarma=document.getElementById('Texto_Alarma').value;
     reciboHoraAlarma=document.getElementById('Hora_Alarma').value;
     reciboMinutoAlarma=document.getElementById('Minuto_Alarma').value;
+    //Agrega ceros
+    reciboHoraAlarma = agregarCero(reciboHoraAlarma);
+    reciboMinutoAlarma = agregarCero(reciboMinutoAlarma);
     //Valida los campos
     validar(recibioTituloAlarma,reciboMensajeAlarma,reciboHoraAlarma,reciboMinutoAlarma);
     //Guarda los valores en posiciones del arreglo de alarmas
@@ -94,7 +97,7 @@ function agregaAlarma(){
             MinutoAlarma:`${reciboMinutoAlarma}`
             }
         );
-        // ponerAlarmas();
+        ponerAlarmas();
         console.log(`Se agregó la alarma ${alarmas.length}`);
         swal('Bien Hecho!', `Se agrego la alarma: \n${recibioTituloAlarma}`,'success');
 
@@ -116,21 +119,27 @@ function ponerAlarmas() {
     for (let i = 0; i < alarmas.length; i++) {
         //Captura la alarma de la posición actual
         var titulo=alarmas[i].TituloAlarma;
-        var texto=alarmas[i].TextoAlarma;
         var hora=alarmas[i].HoraAlarma;
         var minuto=alarmas[i].MinutoAlarma;
         //Agrega el codigo html a la variable alarmas_html para usarlo después
         //el id i es para identificar y saber cual borrar
-        alarmas_html=`<div class="col" id="Alarma${i}">
-        <div class="card">
-            <div class="card-body">
-            <h5 class="card-title">${titulo}</h5>
-            <p class="card-text">${texto}</p>
-            <p class="card-text">${hora} : ${minuto}</p>
-            <button type="button" class="btn btn-danger" onclick="return borrarAlarma(${i})">Eliminar Alarma</button>
+        alarmas_html=`
+            <div class="row" id="Alarma${i}">
+                <div class="col-4 col-md-2 text-center" id="AlarmasPendientesTiempo">
+                    <p><b>${hora} : ${minuto}</b></p>
+                </div>
+                <div class="col text-center" id="AlarmasPendientesTitulo">
+                    <p><b>${titulo}</b></p>
+                </div>
+                <div class="col" id="Switch">
+                    <div class="form-check form-switch">
+                        <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
+                        <label class="form-check-label" for="flexSwitchCheckDefault"></label>
+                    </div>
+                </div>
             </div>
-        </div>
-    </div>`+alarmas_html;
+            
+    `+alarmas_html;
         //Agrega el string de alarmas_html para que imprima todas las alarmas y no solo la última
         const div_html = document.querySelector("#Alarmas_Html");
         div_html.innerHTML = `

@@ -1,6 +1,6 @@
 /* Estilos Fijos */
 #Body{
-    background: rgb(206, 206, 241);
+    background: rgb(221, 221, 243);
 }
 header{
     background: rgb(48, 48, 49);
@@ -67,6 +67,25 @@ header{
     margin-right: 3vh;
 }
 /* /Selector de hora y minuto en agregar alarma */
+/* Alarmas pendientes */
+#AlarmasPendientesTitulo,#AlarmasPendientesTiempo{
+    border-style: groove;
+    background-color: rgb(197, 201, 204);
+    font-size: 20px;
+    /* display: flex;
+    align-items: center; */
+}
+#Switch{
+    display: flex;
+    align-items: center;
+}
+#flexSwitchCheckDefault{
+    padding-top: 8vh;
+    padding-left: 8vh;
+}
+
+/* /Alarmas pendientes */
+
 
 /* Interactividad*/
 .hide{
