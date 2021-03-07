@@ -7,6 +7,7 @@ var alarmas=[];
 var validación=true;
 //Esta variable es para imprimir las alarmas
 var alarmas_html="";
+
 //Oculta la sección de agregar alarma
 //SECCIÓN JQUERY
 $(document).ready(function () {
@@ -112,56 +113,85 @@ function agregaAlarma(){
 //Como las variables hora, minuto, segundo son globales, se actualizan cada segundo
 //Fuck yeah
 
+
+
+//Función borrar alarma
+function borrarAlarma(id) {
+    //Borrala del arreglo
+    //Encuentra que id es en el arreglo
+    for (let i = 0; i < alarmas.length; i++) {
+        if(i===id){
+            console.log(`Borrar la alarma: ${alarmas[i].TituloAlarma}`);
+            //Pregunta al usuario si está seguro
+            swal({
+                title: "Eliminar Alarma",
+                text: "Una vez que se elimine la alarma, se quitará de la lista",
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
+              })
+              .then((willDelete) => {
+                if (willDelete) {
+                //Elimina la alarma https://developer.mozilla.org/es/docs/Web/JavaScript/Reference/Global_Objects/Array
+                alarmas.splice(i, 1)
+                ponerAlarmas();
+                  swal("La alarma ha sido eliminada con exito!", {
+                    icon: "success",
+                  });
+                } else {
+                    //No la elimina
+                    ponerAlarmas();
+                  swal("No se elimino la alarma");
+                }
+              });
+        }
+        
+    }
+    console.log(`Se borro la alarma ${id}`);
+    return null;
+}
+
 //MANIPULAR ALARMAS
 //función para poner la alarma en el html
 function ponerAlarmas() {
     //Recorre las alarmas
-    for (let i = 0; i < alarmas.length; i++) {
-        //Captura la alarma de la posición actual
-        var titulo=alarmas[i].TituloAlarma;
-        var hora=alarmas[i].HoraAlarma;
-        var minuto=alarmas[i].MinutoAlarma;
-        //Agrega el codigo html a la variable alarmas_html para usarlo después
-        //el id i es para identificar y saber cual borrar
-        alarmas_html=`
-            <div class="row" id="Alarma${i}">
-                <div class="col-4 col-md-2 text-center" id="AlarmasPendientesTiempo">
-                    ${hora} : ${minuto}
+    //El siguiente if es para cuando elimina la última alarma
+    if (alarmas.length>0) {
+        for (let i = 0; i < alarmas.length; i++) {
+            //Captura la alarma de la posición actual
+            var titulo=alarmas[i].TituloAlarma;
+            var hora=alarmas[i].HoraAlarma;
+            var minuto=alarmas[i].MinutoAlarma;
+            //Agrega el codigo html a la variable alarmas_html para usarlo después
+            //el id i es para identificar y saber cual borrar
+            alarmas_html=`
+                <div class="row" id="Alarma${i}">
+                    <div class="col-4 col-md-2 text-center" id="AlarmasPendientesTiempo">
+                        ${hora} : ${minuto}
+                    </div>
+                    <div class="col text-center" id="AlarmasPendientesTitulo">
+                        ${titulo}
+                    </div>
+                    <div class="col text-center" id="EliminarAlarma">
+                        <button type="button" class="btn btn-outline-danger" onclick="return borrarAlarma(${i})" id="EliminarAlarma${i}">Eliminar Alarma</button>
+                    </div>
                 </div>
-                <div class="col text-center" id="AlarmasPendientesTitulo">
-                    ${titulo}
-                </div>
-                <div class="col text-center" id="EliminarAlarma">
-                    <button type="button" class="btn btn-outline-danger" id="EliminarAlarma${i}">Eliminar Alarma</button>
-                </div>
-            </div>
-            
-    `+alarmas_html;
-        //Agrega el string de alarmas_html para que imprima todas las alarmas y no solo la última
-        const div_html = document.querySelector("#Alarmas_Html");
-        div_html.innerHTML = `
-        ${alarmas_html}
-        `;
-        console.log(`Se imprimió la alarma`);
+                
+        `+alarmas_html;
+
+        }
+    }else{
+        //En caso que el arreglo de Alarmas no tenga nada
+        //Esto ocurre cuando se borran las alarmas por el usuario, y de todos modos debe reimprimir algo
+        alarmas_html=``;
     }
+                //Agrega el string de alarmas_html para que imprima todas las alarmas y no solo la última
+                const div_html = document.querySelector("#Alarmas_Html");
+                div_html.innerHTML = `
+                ${alarmas_html}
+                `;
+                console.log(`Se imprimió la alarma`);
+
     //Limpia la variable, pues en cada for se llena con el arreglo completo
     alarmas_html="";
-}
-
-//Función borrar alarma o cancelarla
-function borrarAlarma(id) {
-    //Borrala del html
-
-    //ERROR
-    // Cannot set property 'innerHTML' of null
-
-    // const div_html = document.getElementById(`#Alarmas${id}`)
-    // div_html.remove;
-
-    // const div_html = document.querySelector("#Alarmas_Html"+id);
-    // div_html.innerHTML = `
-    
-    // `;
-    console.log(`Se borro la alarma`);
-    return null;
 }
