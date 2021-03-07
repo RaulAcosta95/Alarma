@@ -1,6 +1,6 @@
 /* Estilos Fijos */
 #Body{
-    background: rgb(221, 221, 243);
+    background: rgb(235, 235, 246);
 }
 header{
     background: rgb(48, 48, 49);
@@ -58,7 +58,7 @@ header{
 /* /Boton Nueva Alarma */
 /* Sección Agregar alarma (card) */
 #Card_AgregarAlarma{
-    background-color: rgb(172, 173, 243);
+    background-color: rgb(204, 205, 243);
 }
 /* /Sección Agregar alarma (card) */
 /* Selector de hora y minuto en agregar alarma */
@@ -72,16 +72,21 @@ header{
     border-style: groove;
     background-color: rgb(197, 201, 204);
     font-size: 20px;
+    color: rgb(37, 37, 37);
+    font-family: 'Courier New';
     /* display: flex;
     align-items: center; */
 }
-#Switch{
+#EliminarAlarma buttom{
     display: flex;
     align-items: center;
 }
-#flexSwitchCheckDefault{
-    padding-top: 8vh;
-    padding-left: 8vh;
+#Alarmas_Html .row{
+    border-style:solid;
+    border-width: 2px;
+    border-color: rgb(144, 144, 146);
+    margin-bottom: 5px;
+    margin-top: 2px;
 }
 
 /* /Alarmas pendientes */

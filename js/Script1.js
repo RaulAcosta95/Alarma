@@ -59,7 +59,7 @@ window.onload=function(){
 //Funciónes para validad campos
 function validar(titulo,mensaje,numerohora,numerominuto){
     //Valida campos nulos
-    if (titulo==""||mensaje==""||numerohora==""||numerominuto=="") {
+    if (titulo==""||mensaje==""||titulo.length>30||numerohora==""||numerominuto=="") {
         console.log(`Ningun campo puede ser nulo`);
         validación=false;
     }else{ //Valida la Hora
@@ -102,7 +102,7 @@ function agregaAlarma(){
         swal('Bien Hecho!', `Se agrego la alarma: \n${recibioTituloAlarma}`,'success');
 
     }else{
-          swal('Un problema con tus campos...','No dejes campos vacíos, usa el formato de 24 horas, y cada hora tiene 60 minutos','error');
+          swal('Un problema con tus campos...','No dejes campos vacíos\n El título debe ser menor a 30 letras\n Usa el formato de 24 horas\n Recuerda que cada hora tiene 60 minutos','error');
     }
 
     return false;
@@ -126,16 +126,13 @@ function ponerAlarmas() {
         alarmas_html=`
             <div class="row" id="Alarma${i}">
                 <div class="col-4 col-md-2 text-center" id="AlarmasPendientesTiempo">
-                    <p><b>${hora} : ${minuto}</b></p>
+                    ${hora} : ${minuto}
                 </div>
                 <div class="col text-center" id="AlarmasPendientesTitulo">
-                    <p><b>${titulo}</b></p>
+                    ${titulo}
                 </div>
-                <div class="col" id="Switch">
-                    <div class="form-check form-switch">
-                        <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
-                        <label class="form-check-label" for="flexSwitchCheckDefault"></label>
-                    </div>
+                <div class="col text-center" id="EliminarAlarma">
+                    <button type="button" class="btn btn-outline-danger" id="EliminarAlarma${i}">Eliminar Alarma</button>
                 </div>
             </div>
             
