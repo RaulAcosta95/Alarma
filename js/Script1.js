@@ -54,12 +54,49 @@ function agregarCero(i){
     }
     return i;
 }
-//Esta función no se puede ejecutar así
-// mostrarHora();
+
+//COMPARA ALARMAS CON LA HORA ACTUAL
+function sonarAlarmas(){
+    //Cada vez que va a buscar alarmas, borra el sonido que se pueda estar reproduciendo
+    //De esta manera solo se reproduce una alarma a la vez
+    quitarSonidoAlarma();
+    console.log('Busca alarmas activas');
+    //Recorre el arreglo de alarmas en busqueda de match con la hora y minuto actual
+    for (let i = 0; i < alarmas.length; i++) {
+        if (alarmas[i].HoraAlarma==hora && alarmas[i].MinutoAlarma==minuto) {
+            //Cuando encuentra una alarma que hace match
+            console.log(`Suena la alarma [${i}] : ${alarmas[i].TituloAlarma}`);
+            //Suena
+            ponerSonidoAlarma();
+            //Imprime (y poder borrarla)
+            ponerAlarmaQueSuena(i);
+            //Elimina la alarma
+
+        }
+        
+    }
+    //Cada cuando va a comparar la alarma con el tiempo
+    t=setTimeout('sonarAlarmas()',20000);
+}
+
+//Función que añade el sonido de la alarma
+function ponerSonidoAlarma() {
+    //<audio src="./Sonidos/Enchantment.ogg" autoplay></audio>
+    $(document).ready(function () {
+        $('#SonidoAlarma').append(`<audio src="./Sonidos/Enchantment.ogg" autoplay id="audioAlarma"></audio>`);
+    });
+}
+function quitarSonidoAlarma() {
+    //<audio src="./Sonidos/Enchantment.ogg" autoplay></audio>
+    $(document).ready(function () {
+        $('#audioAlarma').remove();
+    });
+}
 
 //El Evento load se dispara cuando el documento ha terminado de cargarse
 window.onload=function(){
     mostrarHora();
+    sonarAlarmas();
 }
 
 //RECIBE HORA PARA ALARMAS
@@ -116,11 +153,8 @@ function agregaAlarma(){
     return false;
 }
 
-
 //Como las variables hora, minuto, segundo son globales, se actualizan cada segundo
 //Fuck yeah
-
-
 
 //Función borrar alarma
 function borrarAlarma(id) {
@@ -142,11 +176,13 @@ function borrarAlarma(id) {
                 //Elimina la alarma https://developer.mozilla.org/es/docs/Web/JavaScript/Reference/Global_Objects/Array
                 alarmas.splice(i, 1)
                 ponerAlarmas();
+                ponerAlarmaQueSuena(i);
                   swal("La alarma ha sido eliminada con exito!", {
                     icon: "success",
                   });
                 } else {
                     //No la elimina
+                    ponerAlarmaQueSuena(i);
                     ponerAlarmas();
                   swal("No se elimino la alarma");
                 }
@@ -197,8 +233,47 @@ function ponerAlarmas() {
                 div_html.innerHTML = `
                 ${alarmas_html}
                 `;
-                console.log(`Se imprimió la alarma`);
+                console.log(`Se imprimieron las alarmas`);
 
     //Limpia la variable, pues en cada for se llena con el arreglo completo
     alarmas_html="";
+}
+
+//Función que pone alarmas que suenan (solo las que ya sonaron)
+function ponerAlarmaQueSuena(id) {
+    //El siguiente if es para cuando elimina la última alarma
+    if (alarmas.length>0) {
+        //Captura la alarma de la posición
+        var titulo=alarmas[id].TituloAlarma;
+        var texto=alarmas[id].TextoAlarma;
+        //Agrega el codigo html a la variable alarmas_html para usarlo después
+        //el id i es para identificar y saber cual borrar
+        alarmas_html=`
+            <div class="row" id="Alarma${id}">
+                <div class="col col-md-2 text-center" id="AlarmasPendientesTiempo">
+                    ${texto}
+                </div>
+                <div class="col text-center" id="AlarmasPendientesTitulo">
+                    ${titulo}
+                </div>
+                <div class="col text-center" id="EliminarAlarma">
+                    <button type="button" class="btn btn-outline-danger" onclick="return borrarAlarma(${id})" id="EliminarAlarma${id}">Eliminar Alarma</button>
+                </div>
+            </div>
+            
+        `+alarmas_html;
+    }else{
+        //En caso que el arreglo de Alarmas no tenga nada
+        //Esto ocurre cuando se borran las alarmas por el usuario, y de todos modos debe reimprimir algo
+        alarmas_html=``;
+    }
+    //Agrega el string de alarmas_html para que imprima todas las alarmas y no solo la última
+    const div_html = document.querySelector("#AlarmasSonando");
+    div_html.innerHTML = `
+    ${alarmas_html}
+    `;
+    console.log(`Se imprimió la alarma que suena`);
+
+//Limpia la variable, pues en cada for se llena con el arreglo completo
+alarmas_html="";
 }
