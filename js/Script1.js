@@ -30,9 +30,9 @@ function mostrarHora(){
     minuto = tiempo.getMinutes();
     segundo = tiempo.getSeconds();
     //Usa  la función que arregla los numeros
-    hora = agregarCero(hora);
-    minuto = agregarCero(minuto);
-    segundo = agregarCero(segundo);
+    hora = agregarCeroReloj(hora);
+    minuto = agregarCeroReloj(minuto);
+    segundo = agregarCeroReloj(segundo);
     //Pasarlo al elemento reloj en el html (el div)
     document.getElementById('reloj').innerHTML=`${hora}:${minuto}:${segundo}`;
     
@@ -41,13 +41,19 @@ function mostrarHora(){
 }
 
 //Arregla los números que sean menores a 10, de otra manera saldría sin 0
+function agregarCeroReloj(i){
+    if (i<10 || i.length<2) {
+        i='0' + i;
+    }
+    return i;
+}
+//Arregla los números que sean menores a 10, de otra manera saldría sin 0
 function agregarCero(i){
     if (i<10 && i.length<2) {
         i='0' + i;
     }
     return i;
 }
-
 //Esta función no se puede ejecutar así
 // mostrarHora();
 
@@ -60,19 +66,20 @@ window.onload=function(){
 //Funciónes para validad campos
 function validar(titulo,mensaje,numerohora,numerominuto){
     //Valida campos nulos
-    if (titulo==""||mensaje==""||titulo.length>30||numerohora==""||numerominuto=="") {
+    if (titulo===""||mensaje===""||titulo.length>30||numerohora===""||numerominuto==="") {
         console.log(`Ningun campo puede ser nulo`);
         validación=false;
     }else{ //Valida la Hora
-        if (numerohora<0 || numerohora>23 || numerohora == '-0') {
+        if (numerohora<0 || numerohora>23 || numerohora === '-0'||numerohora.length!=2) {
             console.log(`${numerohora} no es una hora valida`);
             validación=false;
         }else{ //Valida el minuto
-            if (numerominuto<0 || numerominuto>59 || numerominuto == '-0') {
+            if (numerominuto<0 || numerominuto>59 || numerominuto === '-0'||numerominuto.length!=2) {
                 console.log(`${numerominuto} no es un minuto valido`);
                 validación=false;
             }else{ validación=true } }
-         } 
+         }
+         console.log(`Se validó ${titulo}, ${mensaje} ${numerohora}, ${numerominuto}`);
 }
 
 function agregaAlarma(){
