@@ -87,6 +87,7 @@ function ponerSonidoAlarma() {
     });
 }
 function quitarSonidoAlarma() {
+    console.log('Se quita?');
     //<audio src="./Sonidos/Enchantment.ogg" autoplay></audio>
     $(document).ready(function () {
         $('#audioAlarma').remove();
@@ -176,7 +177,7 @@ function borrarAlarma(id) {
                 //Elimina la alarma https://developer.mozilla.org/es/docs/Web/JavaScript/Reference/Global_Objects/Array
                 alarmas.splice(i, 1)
                 ponerAlarmas();
-                ponerAlarmaQueSuena(i);
+                ponerAlarmaQueSuena('Borrar');
                   swal("La alarma ha sido eliminada con exito!", {
                     icon: "success",
                   });
@@ -241,8 +242,11 @@ function ponerAlarmas() {
 
 //Función que pone alarmas que suenan (solo las que ya sonaron)
 function ponerAlarmaQueSuena(id) {
-    //El siguiente if es para cuando elimina la última alarma
-    if (alarmas.length>0) {
+    //El siguiente if es para cuando elimina la alarma activa
+    if (id==='Borrar') {
+        //Esto ocurre cuando se borra la alarma por el usuario, y de todos modos debe reimprimir algo
+        alarmas_html=``;
+    }else{
         //Captura la alarma de la posición
         var titulo=alarmas[id].TituloAlarma;
         var texto=alarmas[id].TextoAlarma;
@@ -262,10 +266,6 @@ function ponerAlarmaQueSuena(id) {
             </div>
             
         `+alarmas_html;
-    }else{
-        //En caso que el arreglo de Alarmas no tenga nada
-        //Esto ocurre cuando se borran las alarmas por el usuario, y de todos modos debe reimprimir algo
-        alarmas_html=``;
     }
     //Agrega el string de alarmas_html para que imprima todas las alarmas y no solo la última
     const div_html = document.querySelector("#AlarmasSonando");
